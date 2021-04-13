@@ -9,3 +9,6 @@ export BUILDKITE_GIT_CLONE_FLAGS="-v --depth ${DEPTH}"
 #export BUILDKITE_GIT_FETCH_FLAGS="-v --prune --depth ${DEPTH}"
 
 #export BUILDKITE_GIT_CLONE_FLAGS="-v --filter=blob:none"
+if [[ "${DEPTH}" -gt 100 ]]; then
+  git fetch ${BUILDKITE_GIT_CLONE_FLAGS}
+fi
