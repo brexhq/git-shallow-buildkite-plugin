@@ -6,7 +6,7 @@ echo "Running git-shallow-clone-buildkite-plugin -- pre-checkout"
 
 DEPTH="${BUILDKITE_PLUGIN_GIT_SHALLOW_CLONE_DEPTH:-1}"
 export BUILDKITE_GIT_CLONE_FLAGS="-v --depth ${DEPTH}"
-export BUILDKITE_GIT_CLONE_MIRROR_FLAGS=${BUILDKITE_GIT_CLONE_FLAGS}
+export BUILDKITE_GIT_CLONE_MIRROR_FLAGS="-v --mirror ${BUILDKITE_GIT_CLONE_FLAGS}"
 #export BUILDKITE_GIT_FETCH_FLAGS="-v --prune --depth ${DEPTH}"
 
 #export BUILDKITE_GIT_CLONE_FLAGS="-v --filter=blob:none"
