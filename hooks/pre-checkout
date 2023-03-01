@@ -7,13 +7,13 @@ echo "Running git-shallow-clone-buildkite-plugin -- pre-checkout"
 ARGS=""
 
 # order of precedence
-INCLUDE="${BUILDKITE_PLUGIN_GIT_SHALLOW_CLONE_INCLUDE:-}"
+SINCE="${BUILDKITE_PLUGIN_GIT_SHALLOW_CLONE_SINCE:-}"
 DEPTH="${BUILDKITE_PLUGIN_GIT_SHALLOW_CLONE_DEPTH:-1}"
 
 # ensure we match a git sha
-if [[ "${INCLUDE}" =~ ^[0-9a-f]{5,40}$ ]]
+if [[ "${SINCE}" =~ ^[0-9]+$ ]]
 then
-  ARGS="--shallow-exclude ${INCLUDE}~1"
+  ARGS="--shallow-since ${SINCE}~1"
 else
   ARGS="--depth ${DEPTH}"
 fi
