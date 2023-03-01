@@ -22,7 +22,7 @@ BLOBLESS="${BUILDKITE_PLUGIN_GIT_SHALLOW_CLONE_BLOBLESS:-false}"
 
 if [[ "${BLOBLESS}" = "true" ]]
 then
-  ARGS="${$ARGS} --filter blob:none"
+  ARGS="${ARGS} --filter blob:none"
 fi
 
 export BUILDKITE_GIT_CLONE_FLAGS="-v ${ARGS}"
