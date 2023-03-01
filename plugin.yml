@@ -6,4 +6,6 @@ configuration:
   properties:
     depth:
       type: number
+    include:
+      type: string
   additionalProperties: false
