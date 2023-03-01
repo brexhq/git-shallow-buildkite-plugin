@@ -13,7 +13,7 @@ DEPTH="${BUILDKITE_PLUGIN_GIT_SHALLOW_CLONE_DEPTH:-1}"
 # ensure we match a git sha
 if [[ "${SINCE}" =~ ^[0-9]+$ ]]
 then
-  ARGS="--shallow-since ${SINCE}~1"
+  ARGS="--shallow-since ${SINCE}"
 else
   ARGS="--depth ${DEPTH}"
 fi
