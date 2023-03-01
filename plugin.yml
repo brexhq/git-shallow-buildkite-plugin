@@ -8,4 +8,6 @@ configuration:
       type: number
     since:
       type: number
+    blobless:
+      type: boolean
   additionalProperties: false
