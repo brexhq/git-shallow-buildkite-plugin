@@ -4,8 +4,28 @@ set -euo pipefail
 
 echo "Running git-shallow-clone-buildkite-plugin -- pre-checkout"
 
+ARGS=""
+
+# order of precedence
+SINCE="${BUILDKITE_PLUGIN_GIT_SHALLOW_CLONE_SINCE:-}"
 DEPTH="${BUILDKITE_PLUGIN_GIT_SHALLOW_CLONE_DEPTH:-1}"
-export BUILDKITE_GIT_CLONE_FLAGS="-v --depth ${DEPTH}"
-export BUILDKITE_GIT_FETCH_FLAGS="-v --prune --depth ${DEPTH}"
+
+# ensure we match a git sha
+if [[ "${SINCE}" =~ ^[0-9]+$ ]]
+then
+  ARGS="--shallow-since ${SINCE}"
+else
+  ARGS="--depth ${DEPTH}"
+fi
+
+BLOBLESS="${BUILDKITE_PLUGIN_GIT_SHALLOW_CLONE_BLOBLESS:-false}"
+
+if [[ "${BLOBLESS}" = "true" ]]
+then
+  ARGS="${ARGS} --filter blob:none"
+fi
+
+export BUILDKITE_GIT_CLONE_FLAGS="-v ${ARGS}"
+export BUILDKITE_GIT_FETCH_FLAGS="-v --prune ${ARGS}"
 
 #export BUILDKITE_GIT_CLONE_FLAGS="-v --filter=blob:none"
